@@ -1,4 +1,4 @@
-<echo>"macrodef"</echo>
+
 <macrodef name="gitDiff">
     <sequential>
         <exec executable="git" outputproperty="git.diff">
