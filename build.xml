@@ -1,9 +1,3 @@
-<taskdef resource="net/sf/antcontrib/antlib.xml">
-    <classpath>
-        <pathelement location="lib/ant-contrib-1.0b3.jar"/>
-    </classpath>
-</taskdef>
-
 <echo>"macrodef"</echo>
 <macrodef name="gitDiff">
     <sequential>
