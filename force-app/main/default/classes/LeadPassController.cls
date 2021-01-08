@@ -2,6 +2,7 @@ public with sharing class LeadPassController {
     //Class Name: LeadPassController - Used with LeadPass Lightning Component
     //Author : Raj Rao, Principal Solution Engineer, Salesforce.com
     //Date Released : May 12, 2016
+    //Leandro
     @AuraEnabled
     // Retrieve records based on passed in parameters 
     public static LeadPassPagedResult getRecords(String ObjectName, String fieldSetName, String userSelection, String objectFilter, String leadInboxFilterOption, Decimal pageNumber, Decimal recordsSize) {
