@@ -1,65 +1,67 @@
-<target name="sf_prepare_deployment">
-    <echo message="START: Create diff dir" />
-    <echo message="Checking against targer: ${target}" />
-    <mkdir dir="../${diffDir}" />
-    <mkdir dir="../${diffDir}/src" />
-    <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows" failonerror="true">
-        <arg value="${scriptName}.sh" />
-        <arg value="${target}" />
-        <arg value="${targetName}" />
-    </exec>
-    <exec executable="/bin/bash" osfamily="unix" failonerror="true">
-        <arg value="${scriptName}.sh" />
-        <arg value="${target}" />
-    </exec>
-    <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows">
-        <arg value="create_changes.sh" />
-        <arg value="${diffDir}" />
-    </exec>
+<project xmlns='antlib:org.apache.tools.ant'>
+    <target name="sf_prepare_deployment">
+        <echo message="START: Create diff dir" />
+        <echo message="Checking against targer: ${target}" />
+        <mkdir dir="../${diffDir}" />
+        <mkdir dir="../${diffDir}/src" />
+        <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows" failonerror="true">
+            <arg value="${scriptName}.sh" />
+            <arg value="${target}" />
+            <arg value="${targetName}" />
+        </exec>
+        <exec executable="/bin/bash" osfamily="unix" failonerror="true">
+            <arg value="${scriptName}.sh" />
+            <arg value="${target}" />
+        </exec>
+        <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows">
+            <arg value="create_changes.sh" />
+            <arg value="${diffDir}" />
+        </exec>
 
-    <exec executable="/bin/bash" osfamily="unix">
-        <arg value="create_changes.sh" />
-        <arg value="${diffDir}" />
-    </exec>
-    <echo message="Generating package.xml" />
+        <exec executable="/bin/bash" osfamily="unix">
+            <arg value="create_changes.sh" />
+            <arg value="${diffDir}" />
+        </exec>
+        <echo message="Generating package.xml" />
 
-    <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows">
-        <arg value="generate_package.sh" />
-        <arg value="../final.txt" />
-        <arg value="package" />
-        <arg value="C:/Jenkins/workspace/deploy/src" />
-    </exec>
+        <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows">
+            <arg value="generate_package.sh" />
+            <arg value="../final.txt" />
+            <arg value="package" />
+            <arg value="C:/Jenkins/workspace/deploy/src" />
+        </exec>
 
-    <exec executable="/bin/bash" osfamily="unix">
-        <arg value="generate_package.sh" />
-        <arg value="../final.txt" />
-        <arg value="package" />
-        <arg value="../${diffDir}/src" />
-    </exec>
-    <echo message="Package generated." />
-    <echo message="Adding properties if applicable" />
+        <exec executable="/bin/bash" osfamily="unix">
+            <arg value="generate_package.sh" />
+            <arg value="../final.txt" />
+            <arg value="package" />
+            <arg value="../${diffDir}/src" />
+        </exec>
+        <echo message="Package generated." />
+        <echo message="Adding properties if applicable" />
 
-    <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows">
-        <arg value="properties_helper.sh" />
-        <arg value="${propsEnv}" />
-        <arg value="../${diffDir}/src" />
-    </exec>
+        <exec executable="C:\Program Files\Git\bin\bash.exe" osfamily="windows">
+            <arg value="properties_helper.sh" />
+            <arg value="${propsEnv}" />
+            <arg value="../${diffDir}/src" />
+        </exec>
 
-    <exec executable="/bin/bash" osfamily="unix">
-        <arg value="properties_helper.sh" />
-        <arg value="${propsEnv}" />
-        <arg value="../${diffDir}/src" />
-    </exec>
-    <echo message="Properties added. Finished." />
-</target>
+        <exec executable="/bin/bash" osfamily="unix">
+            <arg value="properties_helper.sh" />
+            <arg value="${propsEnv}" />
+            <arg value="../${diffDir}/src" />
+        </exec>
+        <echo message="Properties added. Finished." />
+    </target>
 
-<target name="sf_build" depends="sf_prepare_deployment">
-    <echo message="START: SFDC Deployment" />
-    <echo message="../${diffDir}/src" />
-    <sf:deploy  username="${sf.deploy.username}" password="${sf.deploy.password}"
-                serverurl="${sf.deploy.serverurl}" sessionId="${sf.deploy.sessionId}"
-                deployRoot="../${diffDir}/src" maxPoll="${sf.maxPoll}"
-                pollWaitMillis="${sf.pollWaitMillis}" checkOnly="${sf.checkOnly}"
-                runAllTests="${sf.runAllTests}" logType="${sf.logType}"
-    />
-</target>
+    <target name="sf_build" depends="sf_prepare_deployment">
+        <echo message="START: SFDC Deployment" />
+        <echo message="../${diffDir}/src" />
+        <sf:deploy  username="${sf.deploy.username}" password="${sf.deploy.password}"
+                    serverurl="${sf.deploy.serverurl}" sessionId="${sf.deploy.sessionId}"
+                    deployRoot="../${diffDir}/src" maxPoll="${sf.maxPoll}"
+                    pollWaitMillis="${sf.pollWaitMillis}" checkOnly="${sf.checkOnly}"
+                    runAllTests="${sf.runAllTests}" logType="${sf.logType}"
+        />
+    </target>
+</project>
