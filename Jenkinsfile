@@ -16,10 +16,10 @@ node {
     String CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
 
     echo 'KEY IS' 
-    echo ${JWT_KEY_CRED_ID}
-    println HUB_ORG
-    println SFDC_HOST
-    println CONNECTED_APP_CONSUMER_KEY
+    echo $JWT_KEY_CRED_ID
+    echo $HUB_ORG
+    println $SFDC_HOST
+    println $CONNECTED_APP_CONSUMER_KEY
     //def toolbelt = tool 'sfdx'
 
     stage('checkout source') {
