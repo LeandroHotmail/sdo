@@ -35,7 +35,7 @@ node {
 		// -------------------------------------------------------------------------
 
 		stage('Authorize to Salesforce') {
-			sh export SFDX_USE_GENERIC_KEYCHAIN=true
+			rc = command "export SFDX_USE_GENERIC_KEYCHAIN=true"
 			sh echo Above Set Value: $SFDX_USE_GENERIC_KEYCHAIN
 			sh sfdx force:org:list
 			sh echo Shell is: $SHELL
