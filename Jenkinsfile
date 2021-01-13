@@ -16,7 +16,7 @@ node {
     echo HUB_ORG
     echo SFDC_HOST
     echo CONNECTED_APP_CONSUMER_KEY
-    //def toolbelt = tool 'sfdx'
+    def toolbelt = tool 'sfdx'
 
     stage('checkout source') {
         // when running in multi-branch job, one must issue this command
@@ -25,13 +25,13 @@ node {
 
     withCredentials([file(credentialsId: JWT_KEY_CRED_ID, variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
-            rc = sh returnStatus: true, script: "sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+            rc = sh returnStatus: true, script: "${toolbelt}/sfdx force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             if (rc != 0) { error 'hub org authorization failed' }
 
 			echo rc
 			
 			// need to pull out assigned username
-			rmsg = sh returnStdout: true, script: "sfdx force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
+			rmsg = sh returnStdout: true, script: "${toolbelt}/sfdx force:mdapi:deploy -d manifest/. -u ${HUB_ORG}"
 			  
             echo rmsg
             echo('Hello from a Job DSL script!')
