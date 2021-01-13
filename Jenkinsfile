@@ -1,10 +1,3 @@
-
-
-    //def HUB_ORG="ldecarvalho@ldecarvalho-20200713.demo"
-    //def SFDC_HOST="https://login.salesforce.com"
-    //def JWT_KEY_CRED_ID="31b7bc70-9222-4aa4-a027-17e3ab7f081c"
-    //def CONNECTED_APP_CONSUMER_KEY="3MVG9Kip4IKAZQEXMiOBtPOX__bjAFLq3oSppEvk9LBBjY_JM2v_6k4tdjKIz291udcDtPsdTYu90EjVQuOJP"
-
 #!groovy
 import groovy.json.JsonSlurperClassic
 node {
