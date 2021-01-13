@@ -1,5 +1,9 @@
 #!groovy
 import groovy.json.JsonSlurperClassic
+import com.cloudbees.plugins.credentials.CredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
+import com.cloudbees.hudson.plugins.folder.Folder
+import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
 node {
 
     def BUILD_NUMBER=env.BUILD_NUMBER
