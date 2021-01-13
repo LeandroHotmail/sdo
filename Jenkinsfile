@@ -6,17 +6,17 @@ import com.cloudbees.hudson.plugins.folder.Folder
 import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
 node {
 
-    def BUILD_NUMBER=env.BUILD_NUMBER
-    def RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
-    def SFDC_USERNAME
+    String BUILD_NUMBER=env.BUILD_NUMBER
+    String RUN_ARTIFACT_DIR="tests/${BUILD_NUMBER}"
+    String SFDC_USERNAME
 
-    def HUB_ORG=env.HUB_ORG_DH
-    def SFDC_HOST = env.SFDC_HOST_DH
-    def JWT_KEY_CRED_ID = env.JWT_CRED_ID_DH
-    def CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
+    String HUB_ORG=env.HUB_ORG_DH
+    String SFDC_HOST = env.SFDC_HOST_DH
+    String JWT_KEY_CRED_ID = env.JWT_CRED_ID_DH
+    String CONNECTED_APP_CONSUMER_KEY=env.CONNECTED_APP_CONSUMER_KEY_DH
 
     echo 'KEY IS' 
-    echo $JWT_KEY_CRED_ID
+    echo ${JWT_KEY_CRED_ID}
     println HUB_ORG
     println SFDC_HOST
     println CONNECTED_APP_CONSUMER_KEY
