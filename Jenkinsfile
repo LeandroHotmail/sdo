@@ -43,7 +43,7 @@ node {
                     error 'Salesforce dev hub org authorization failed.'
                 }
             }
-            rc = command "${toolbelt}/sfdx force:auth:logout --targetusername ${SF_USERNAME} -p"
+            //rc = command "${toolbelt}/sfdx force:auth:logout --targetusername ${SF_USERNAME} -p"
  
             // -------------------------------------------------------------------------
             // Create new scratch org to test your code.
@@ -68,7 +68,7 @@ node {
                 }
             }
  
- 
+ /*
             // -------------------------------------------------------------------------
             // Push source to test scratch org.
             // -------------------------------------------------------------------------
@@ -188,7 +188,7 @@ node {
                 if (rc != 0) {
                     error 'Salesforce package install scratch org deletion failed.'
                 }
-            } //*/
+            } */
         }
     }
 }
