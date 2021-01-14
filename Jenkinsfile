@@ -37,10 +37,10 @@ node {
 
 
 
-	def DEPLOYDIR='/var/lib/jenkins_home/workspace/new_pipeline_master/force-app/main/default'
+	def DEPLOYDIR='/var/jenkins_home/workspace/new_pipeline_master/force-app/main/default'
 	echo DEPLOYDIR
 	echo pwd
-	sh 'ls -ll /var/lib/jenkins/workspace/new_pipeline_master'
+	sh 'ls -ll /var/jenkins/workspace/new_pipeline_master'
 	def wk1 = env.WORKSPACE
 	echo wk1
 
