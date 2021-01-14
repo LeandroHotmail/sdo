@@ -66,7 +66,7 @@ node {
 	echo env.BRANCH_NAME
 
 	echo pwd
-    writeFile file: 'authjenkinsci.txt', text: SF_AUTH_URL
+    //writeFile file: 'authjenkinsci.txt', text: SF_AUTH_URL
 	sh 'ls -l authjenkinsci.txt'
 	sh 'cat authjenkinsci.txt'
     sh 'pwd'
