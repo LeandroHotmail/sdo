@@ -74,7 +74,7 @@ node {
 	echo pwd
 	
 	rc = command "${toolbelt}/sfdx --help"
-    echo $rc
+    echo rc
     echo "rc"
 	if (rc != 0) {
 		error 'SFDX CLI Jenkins tool initalize failed.'
