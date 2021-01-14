@@ -70,7 +70,8 @@ node {
 	sh 'ls -l authjenkinsci.txt'
 	sh 'cat authjenkinsci.txt'
     sh 'pwd'
-	
+    sh 'ls -ll /var/jenkins_home/workspace/new_pipeline_master'
+	echo pwd
 	
 	rc = command "${toolbelt}/sfdx --help"
 	if (rc != 0) {
