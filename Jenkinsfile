@@ -74,19 +74,22 @@ node {
 	echo pwd
 	
 	rc = command "${toolbelt}/sfdx --help"
+    echo $rc
+    echo "rc"
 	if (rc != 0) {
 		error 'SFDX CLI Jenkins tool initalize failed.'
 	}
 
-	
 
 	// auth
+    echo "rc2 ---> auth"
 	rc2 = command "${toolbelt}/sfdx force:auth:sfdxurl:store -f authjenkinsci.txt -a targetEnvironment"
 	if (rc2 != 0) {
 		error 'SFDX CLI Authorization to target env has failed.'
 	}
 	
 	// deploy full build  --dev-debug
+    echo "rc4 ---> deploy full build  --dev-debug"
 	rc4 = command "${toolbelt}/sfdx force:source:deploy -c --wait 10 --sourcepath ${DEPLOYDIR} --testlevel ${TEST_LEVEL} -u targetEnvironment"
 	if (rc4 != 0) {
 		error 'There was an issue deploying. Check ORG deployment status page for details'
@@ -94,6 +97,7 @@ node {
 
 
 	// run tests
+    echo "rc3 ---> run tests"
 	rc3 = command "${toolbelt}/sfdx force:apex:test:run -u targetEnvironment --wait 10"
 	if (rc3 != 0) {
 		error 'There was an issue running apex tests. Check ORG for details'
